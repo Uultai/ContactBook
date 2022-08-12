@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import UsersList from "./components/UsersList/UsersList";
+import UserContextProvider from "./userContext";
+import NavbarCon from "./components/Navbar/Navbar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/users"
+            element={
+              <>
+                <NavbarCon />
+                <UsersList />
+              </>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </UserContextProvider>
   );
 }
 
